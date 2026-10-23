@@ -14,7 +14,6 @@ jobs:
         id: ai-response
         uses: actions/ai-inference@v2
         with:
-          model: openai/gpt-4o-mini
           token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             Give me a programming joke.

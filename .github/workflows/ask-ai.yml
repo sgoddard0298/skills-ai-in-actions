@@ -8,20 +8,19 @@ permissions:
 jobs:
   ask-ai:
     runs-on: ubuntu-latest
-
     steps:
       - name: AI Inference
         id: ai-response
         uses: actions/ai-inference@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          prompt: |
-            Give me a programming joke.
+          model: openai/gpt-4o
+          endpoint: https://models.github.ai/inference
+          prompt: Give me a programming joke.
 
       - name: Display AI Response
         env:
           RESPONSE: ${{ steps.ai-response.outputs.response }}
         run: |
-          echo "## 🤖 AI Response" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "$RESPONSE" >> $GITHUB_STEP_SUMMARY
+          echo "## 🤖 AI Response" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "$RESPONSE" >> "$GITHUB_STEP_SUMMARY"
